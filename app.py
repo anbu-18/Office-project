@@ -9,7 +9,8 @@ app = Flask(__name__)
 def index():
     try:
         return "<h1>Webpage</h1>"
-    except:
+    except Exception as e:
+        print("unable to load home page: ",e)
         return "unable to load home page"
 
 ########################## To insert URL into database from json request######################
@@ -20,7 +21,8 @@ def insertdata():
         obj = malwaredetect.malwaredetect()
         response = obj.table_values(data)
         return response
-    except:
+    except Exception as e:
+        print(" Error while processing json request: ",e)
         return "Error while processing json request"
 
 ######################### Get all values from a database #####################################
@@ -30,7 +32,8 @@ def getalldata():
         obj = malwaredetect.malwaredetect()
         response = obj.getallvalues()
         return response
-    except:
+    except Exception as e:
+        print("Error while processing json request: ",e)
         return "Error while processing json request"
 
 ######################### To check whether a url is available in database ###################
@@ -41,7 +44,8 @@ def malwarecheck():
         obj = malwaredetect.malwaredetect()
         response = obj.detection(data)
         return response
-    except:
+    except Exception as e:
+        print(" Error while processing json request: ",e)
         return "Error while processing json request"
         
 
@@ -59,7 +63,8 @@ def getfile():
                 obj=malwaredetect.malwaredetect()
                 response=obj.table_values(userrequest)
         return response
-    except:
+    except Exception as e:
+        print("Error while processing input file: ",e)
         return "Error while processing input file"
 
 ################################ To clear values from a database ##########################
@@ -69,7 +74,8 @@ def deleteall():
         obj= malwaredetect.malwaredetect()
         response = obj.deleteall()
         return response
-    except:
+    except Exception as e:
+        print("Error while processing json request: ",e)
         return "Error while processing json request"
         
 
